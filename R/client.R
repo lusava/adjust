@@ -182,8 +182,8 @@ adjust.get.host <- function() {
     cat(sprintf("Request URL:\n%s\n", URLdecode(resp$url)))
   }
 
-  if (status_code(resp) != 200) {
-    warning('Unexpected HTTP response code from the KPI service: ', status_code(resp))
+  if (httr::status_code(resp) != 200) {
+    warning('Unexpected HTTP response code from the KPI service: ', httr::status_code(resp))
     stop(content(resp))
   }
 
