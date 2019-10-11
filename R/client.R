@@ -173,7 +173,7 @@ adjust.get.host <- function() {
 }
 
 .get.request <- function(...) {
-  resp <- httr::GET(adjust.get.host(), ..., add_headers(
+  resp <- httr::GET(adjust.get.host(), ..., httr::add_headers(
     'Accept'=.ACCEPT.HEADER,
     'Authorization'=sprintf(.AUTHORIZATION.HEADER, user.token())
   ))
