@@ -173,7 +173,7 @@ adjust.get.host <- function() {
 }
 
 .get.request <- function(...) {
-  resp <- GET(adjust.get.host(), ..., add_headers(
+  resp <- httr::GET(adjust.get.host(), ..., add_headers(
     'Accept'=.ACCEPT.HEADER,
     'Authorization'=sprintf(.AUTHORIZATION.HEADER, user.token())
   ))
@@ -193,7 +193,7 @@ adjust.get.host <- function() {
   }
 
   # We choose to parse the response using data.table::fread instead of readr::read_csv, which is the default in httr.
-  res <- data.table::fread(content(resp, as='text', encoding='UTF-8'), integer64='numeric', encoding='UTF-8')
+  res <- data.table::fread(httr::content(resp, as='text', encoding='UTF-8'), integer64='numeric', encoding='UTF-8')
 
   # Perform some parsing of the data.table columns
   for (col in colnames(res)) {
