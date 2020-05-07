@@ -201,12 +201,12 @@ adjust.get.host <- function() {
     if (class(res[[col]]) != 'character') {
       val <- res[[col]]
       val[is.na(val)] <- 0
-      set(res, j=col, value=val)
+      data.table::set(res, j=col, value=val)
     }
 
     # For consistency all integer class columns are converted to Numeric
     if (class(res[[col]]) == 'integer') {
-      set(res, j=col, value=as.numeric(res[[col]]))
+      data.table::set(res, j=col, value=as.numeric(res[[col]]))
     }
   }
 
